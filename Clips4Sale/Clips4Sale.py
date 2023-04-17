@@ -44,7 +44,14 @@ def repair_description(base, lversion):
     try:
         for i in range(len(base_words)):
             if base_words[i] != l_words[i]:
-                base = base.replace(base_words[i], l_words[i])
+                if '.' in base_words[i]:
+                    base_words_fixed = base_words[i].replace('.', '. ')
+                    if '. . . ' in base_words_fixed:
+                        base_words_fixed = base_words_fixed.replace('. . . ', '...')
+                    base = base.replace(base_words[i], base_words_fixed.rstrip())
+                if len(base_words[i]) >= 3 and len(l_words[i]) >= 3:
+                    if base_words[i][:2] == l_words[i][:2] and base_words[i][-1] == l_words[i][-1]:
+                        base = base.replace(base_words[i], l_words[i])
     except IndexError:
         return base
 
@@ -69,7 +76,7 @@ def get_l_url(url):
         netloc = netloc[4:]  # remove the "www." prefix if it exists
     path_parts = path.split("/")
     last_path = path_parts[-2]  # get the second-to-last part of the path
-    new_url = f"{scheme}://l.{netloc}/clip/{last_path}"
+    new_url = f"https://l.clips4sale.com/clip/{last_path}"
     return new_url
 
 
