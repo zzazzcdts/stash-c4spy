@@ -118,7 +118,7 @@ def get_good_description(url_to_process):
 
 def output_json(title, tags, url, image, studio, performers, description, date):
     tag_list = tags.split(", ")
-    tag_dicts = [{"name": tag} for tag in tag_list]
+    tag_dicts = [{"name": tag} for tag in tag_list if tag != "N/A"]
     performer_list = performers.split(", ")
     performer_dicts = [{"name": performer} for performer in performer_list]
 
@@ -167,8 +167,13 @@ def scrape_scene(scene_url: str) -> dict:
     scrape['studio'] = studio_link.get_text().replace('  ', ' ')
 
     # Tag parsing
+    # Parse category
+    category_span = soup.find('span', {'class': 'font-bold'}, string='Category: ')
+    category = category_span.find_next_sibling('a').text.rstrip().lstrip()
+
+    # Parse 'Related Categories' and 'Keywords' sections
     related_links_span = soup.find_all('span', {'class': 'relatedCatLinks'})
-    related_links_text = ""
+    related_links_text = category + ", "
     for span in related_links_span:
         texttoadd = span.get_text().rstrip().lstrip().rstrip(".")
         related_links_text += texttoadd + ", "
