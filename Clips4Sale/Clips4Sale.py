@@ -145,7 +145,10 @@ def scrape_scene(scene_url: str) -> dict:
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Title parsing
-    scrape['title'] = soup.find('h3', {'class': '[ text-white mt-3-0 mb-1-0 text-2-4 ]'}).text.rstrip()
+    title_pre_regex = soup.find('h3', {'class': '[ text-white mt-3-0 mb-1-0 text-2-4 ]'}).text.rstrip()
+    regex_pattern = r"(?i)[ \t]*((Super )?[SH]D)?[ ,-]*(\b(MP4|OPTIMUM|WMV|MOV|AVI|UHD|[48]K)\b|1080p|720p|480p|\(1080 HD\)|\(720 HD\)(Standard|High) Def(inition)?)+[ \t]*"
+    title_processed = re.sub(regex_pattern, "", title_pre_regex)
+    scrape['title'] = title_processed.rstrip().rstrip(" -")
 
     # Date parsing
     added_section = soup.select_one('span:-soup-contains("Added:")')
