@@ -1,0 +1,36 @@
+name: Clips4SalePython
+sceneByURL:
+  - url:
+      - clips4sale.com/studio/
+    action: script
+    script:
+      - python3
+      - Clips4Sale.py
+
+sceneByName:
+  action: scrapeXPath
+  queryURL: https://www.clips4sale.com/clips/search/{}
+  scraper: c4sSearch
+sceneByQueryFragment:
+  action: script
+  script:
+    - python3
+    - Clips4Sale.py
+
+xPathScrapers:
+  c4sSearch:
+    common:
+      $card: //figure[contains(@class, "splide__slide")]
+    scene:
+      Title:
+        selector: $card/@aria-label
+      URL:
+        selector: $card//a[contains(@class, "search-clip__title")]/@href
+      Image:
+        selector: $card//a[contains(@class, "search-clip__title")]/@href
+        postProcess:
+          - replace:
+              - regex: https:\/\/www.clips4sale.com\/studio\/(\d+)\/(\d+)\/.*$
+                with: https://imagecdn.clips4sale.com/accounts99/$1/clip_images/previewlg_$2.jpg
+
+# Last Updated 2023-04-17
