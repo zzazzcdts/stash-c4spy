@@ -49,8 +49,8 @@ def repair_description(base, lversion):
                     if '. . . ' in base_words_fixed:
                         base_words_fixed = base_words_fixed.replace('. . . ', '...')
                     base = base.replace(base_words[i], base_words_fixed.rstrip())
-                if len(base_words[i]) >= 3 and len(l_words[i]) >= 3:
-                    if base_words[i][:2] == l_words[i][:2] and base_words[i][-1] == l_words[i][-1]:
+                if len(base_words[i]) >= 2 and len(l_words[i]) >= 2:
+                    if base_words[i][:1] == l_words[i][:1] and base_words[i][-1] == l_words[i][-1]:
                         base = base.replace(base_words[i], l_words[i])
     except IndexError:
         return base
