@@ -116,7 +116,7 @@ def get_good_description(url_to_process):
     return fixed
 
 
-def output_json(title, tags, url, image, studio, performers, description):
+def output_json(title, tags, url, image, studio, performers, description, date):
     tag_list = tags.split(", ")
     tag_dicts = [{"name": tag} for tag in tag_list]
     performer_list = performers.split(", ")
@@ -129,7 +129,8 @@ def output_json(title, tags, url, image, studio, performers, description):
         "image": image,
         "studio": {"name": studio},
         "performers": performer_dicts,
-        "details": description
+        "details": description,
+        "date": date
     })
 
 
@@ -188,7 +189,7 @@ def scrape_scene(scene_url: str) -> dict:
     scrape['description'] = get_good_description(scene_url).rstrip().lstrip()
 
     json = output_json(scrape['title'], scrape['tags'], scene_url, scrape['image'], scrape['studio'],
-                       scrape['performers'], scrape['description'])
+                       scrape['performers'], scrape['description'], scrape['date'])
 
     print(json)
 
