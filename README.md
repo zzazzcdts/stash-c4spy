@@ -9,9 +9,9 @@ This is a Python scraper, and as such, Python (Python3) needs to be installed.
 - For Μac systems either use homebrew eg `brew install python3` or use the python.org installer ([instructions](https://www.lifewire.com/how-to-install-python-on-mac-4781318))
 
 ## pip requirements
-bs4
-lxml
-requests
+- bs4
+- lxml
+- requests
 
 ## Features
 - Addresses a bug where descriptions are sometimes rendered without apostrophes. This is achieved by pulling in the description from an alternative source (l.clips4sale.com as opposed to clips4sale.com) and combining the two sources into one perfect description. It compares the description word-by-word from each source, and if there's a mismatch, replaces it with the word from l.clips4sale.com (i.e. the one with apostrophes).
