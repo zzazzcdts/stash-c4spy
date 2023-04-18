@@ -90,10 +90,10 @@ def get_base_description(url):
 
     # find the div tag with the class individualClipDescription
     div_tag = soup.find('div', {'class': 'individualClipDescription'})
-
+    for tag in div_tag.find_all(['em', 'strong']):
+        tag.insert_before('\n')
     # extract the text content of the div tag
-    c4s_base_text = div_tag.get_text()
-
+    c4s_base_text = div_tag.get_text(separator='\n').rstrip().lstrip().replace("\n\n\n", "\n")
     return c4s_base_text
 
 
@@ -215,4 +215,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Last updated 2023-04-17
+# Last updated 2023-04-18
