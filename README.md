@@ -1,4 +1,4 @@
-# stash-c4spy
+# stash-c4s-pyscraper
 Python-based Clips4Sale scraper for Stash
 
 ## Dependencies
