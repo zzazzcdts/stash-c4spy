@@ -48,6 +48,9 @@ except ModuleNotFoundError:
 # This function cross-references both to get one canonical description.
 def repair_description(base, lversion):
     # Split the text of both versions into separate words
+    pattern = "(?<![\n\.]) {2}"
+    base = re.sub(pattern, " ~~DOUBLESPACE~~ ", base)
+    lversion = re.sub(pattern, " ~~DOUBLESPACE~~ ", lversion)
     base_words = base.split()
     l_words = lversion.split()
 
@@ -73,6 +76,10 @@ def repair_description(base, lversion):
                     if base_words[i][:1] == l_words[i][:1] and base_words[i][-1] == l_words[i][-1]:
                         # Replace the word with the version from l.clips4sale.com
                         base = base.replace(base_words[i], l_words[i])
+                    if base_words[i] == "~~DOUBLESPACE~~" and l_words[i] != "~~DOUBLESPACE~~":
+                        base = base.replace(base_words[i], l_words[i])
+                    else:
+                        base = base.replace(base_words[i], "[CENSORED]")
     # If there is an indexing error, just skip the word.
     except IndexError:
         pass
@@ -259,4 +266,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Last updated 2023-04-18
+# Last updated 2023-04-19
