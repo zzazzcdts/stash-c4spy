@@ -158,7 +158,13 @@ def get_good_description(url_to_process):
     # Get the URL for the l.clips4sale.com version of the site.
     l_url = get_l_url(url_to_process)
     # Get the description from the l.clips4sale.com version of the site.
-    ltext = get_l_description(l_url)
+    try:
+        ltext = get_l_description(l_url)
+    except TypeError as e:
+        log.error("Missing l.clips4sale.com link, reverting to using base link description.")
+        basetext = strip_html_tags(basetext)
+        basetext = fix_single_quotes(basetext)
+        return basetext
     # Call the description repair function.
     fixed = repair_description(basetext, ltext)
     # Strip HTML tags.
