@@ -21,7 +21,7 @@ This is a Python scraper, and as such, Python (Python3) needs to be installed.
 - Line breaks are now processed correctly. Before, there were instances of paragraphs immediately following on from one another (not even leaving a space) - this should now be rectified.
 
 ## Pitfalls
-- Highly untested - It seems to work fine on my Stash instance and I haven't encountered any issues yet, but this should very much be considered untested.
+- I have tested this on a couple of hundred video clips, and the only issue I've encountered is the occasional 'Invariant violation' error - this happens in about one in every 50-100 scrapes or so, and can be rectified by just running the scraper again.
 - Takes quite a bit longer than the YML/Xpath based scraper. It's probably quite inefficient code - I think there are three calls made to the C4S website. I'm sure this could be slimmed down.
 
 ## Special thanks
