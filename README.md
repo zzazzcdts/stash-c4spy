@@ -1,4 +1,5 @@
 # stash-c4s-pyscraper
+# THIS PLUGIN IS NOW DEPRECATED DUE TO CHANGES TO THE C4S SITE - PLEASE DO NOT USE
 Python-based Clips4Sale scraper for Stash
 
 ## Dependencies
