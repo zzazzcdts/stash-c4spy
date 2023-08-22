@@ -1,6 +1,6 @@
 # stash-c4s-pyscraper
 # THIS PLUGIN IS NOW DEPRECATED DUE TO CHANGES TO THE C4S SITE - PLEASE DO NOT USE
-## The plugin has been left on Github for posterity, or in case any of its component code is of any use
+## The plugin has been left on Github for posterity, or in case any of its component code is of any use. It's all open-source - feel free to rip it apart and cannibalise it for any purpose
 Python-based Clips4Sale scraper for Stash
 
 ## Dependencies
